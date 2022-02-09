@@ -21,6 +21,19 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  name: autopass
+  labels:
+    run: autopass
+spec:
+  ports:
+  - port: 5814
+    protocol: TCP
+  selector:
+    run: autopass
+---
+apiVersion: v1
+kind: Service
+metadata:
   name: autopass-np-ingress
 spec:
   type: NodePort 
