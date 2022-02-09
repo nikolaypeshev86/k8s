@@ -21,22 +21,22 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: autopass-ingress
-  namespace: nginx-ingress
+  name: autopass-np-ingress
+  namespace: ingress
 spec:
   type: NodePort 
   ports:
   - port: 5814
     targetPort: 5814
     protocol: TCP
-    name: http
+    name: https
   selector:
     app: autopass
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: ingress
+  name: autopass-lb-ingress
   namespace: ingress
 spec:
   selector:
@@ -46,7 +46,7 @@ spec:
   # from its pool if not specified. You can also specify one manually.
   # loadBalancerIP: x.y.z.a
   ports:
-    - name: http
+    - name: https
       protocol: TCP
       port: 5814
       targetPort: 5814
