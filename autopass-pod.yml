@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx
+  name: autopass
 spec:
   containers:
-  - name: nginx
-    image: nginx:1.17.3
+  - name: autopass
+    image: nikolaypeshev/autopass:12.3
     ports:
-    - containerPort: 80
+    - containerPort: 5814
