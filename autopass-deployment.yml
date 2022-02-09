@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: autopass
+spec:
+  selector:
+    matchLabels:
+      app: autopass
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: autopass
+    spec:
+      containers:
+      - name: autopass
+        image: nikolaypeshev/autopass:12.3
+        ports:
+        - containerPort: 5814
