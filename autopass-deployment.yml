@@ -21,7 +21,8 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: autopass-lb
+  name: ingress
+  namespace: ingress
 spec:
   selector:
     name: autopass
@@ -32,5 +33,5 @@ spec:
   ports:
     - name: https
       protocol: TCP
-      port: 443
+      port: 5814
       targetPort: 5814
