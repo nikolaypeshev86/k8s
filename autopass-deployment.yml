@@ -17,6 +17,7 @@ spec:
         image: nikolaypeshev/autopass:12.3
         ports:
         - containerPort: 5814
+---
 apiVersion: v1
 kind: Service
 metadata:
