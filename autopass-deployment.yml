@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: autopass
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -21,11 +21,26 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  name: autopass-ingress
+  namespace: nginx-ingress
+spec:
+  type: NodePort 
+  ports:
+  - port: 5814
+    targetPort: 5814
+    protocol: TCP
+    name: http
+  selector:
+    app: autopass
+---
+apiVersion: v1
+kind: Service
+metadata:
   name: ingress
   namespace: ingress
 spec:
   selector:
-    name: autopass-ingress
+    name: autopass
   type: LoadBalancer
   # loadBalancerIP is optional. MetalLB will automatically allocate an IP 
   # from its pool if not specified. You can also specify one manually.
