@@ -3,6 +3,10 @@ kind: Pod
 metadata:
   name: autopass
 spec:
+  selector:
+    matchLabels:
+      app: autopass
+  replicas: 1
   containers:
   - name: autopass
     image: nikolaypeshev/autopass:12.3
