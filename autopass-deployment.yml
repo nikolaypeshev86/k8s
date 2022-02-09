@@ -32,5 +32,5 @@ spec:
   ports:
     - name: https
       protocol: TCP
-      port: 5814
-      targetPort: 443
+      port: 443
+      targetPort: 5814
