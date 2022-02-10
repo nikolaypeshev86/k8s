@@ -1,0 +1,131 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: octane_mssql
+spec:
+  ports:
+  - port: 1433
+  selector:
+    app: octane_mssql
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: octane_mssql 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: octane_mssql
+  template:
+    metadata:
+      labels:
+        app: octane_mssql
+    spec:
+      containers:
+      - name: octane_mssql
+        image: mcr.microsoft.com/mssql/server:2017-latest
+        env:
+          # Env. for MSSQL
+        - name: MYSQL_ROOT_PASSWORD
+          value: password
+        - name: SA_PASSWORD
+          value: OctaneIsTheBest1!
+        - name: MSSQL_PID
+          value: Express           
+        ports:
+        - containerPort: 1433
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: octane_es
+spec:
+  ports:
+  - port: 9200
+  selector:
+    app: octane_es
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: octane_es 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: octane_es
+  template:
+    metadata:
+      labels:
+        app: octane_es
+    spec:
+      containers:
+      - name: octane_es
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.16.2
+        env:
+          # Env. for ES
+        - name: http.host
+          value: 0.0.0.0
+        - name: cluster.name
+          value: elasticsearch
+        - name: bootstrap.memory_lock
+          value: true
+        - name: discovery.type
+          value: single-node          
+        ports:
+        - containerPort: 9300
+        - containerPort: 9200
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: octane
+spec:
+  ports:
+  - port: 8080
+  selector:
+    app: octane
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: octane
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+  selector:
+    app: octane
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: octane 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: octane
+  template:
+    metadata:
+      labels:
+        app: octane
+    spec:
+      containers:
+      - name: octane
+        image: lifecyclemanagement/octane
+        env:
+          # Env. for Octane
+        - name: SITEADMINISTRATOR_USER
+          value: admin
+        - name: SITEADMINISTRATOR_PASSWORD
+          value: P@ssw0rd
+        - name: APP_URL
+          value: http://octane:8080
+        - name: SCHEMA_PASSWORD
+          value: P@ssw0rd
+        ports:
+        - containerPort: 8080 
+        - containerPort: 8443 
+        - containerPort: 5701 
