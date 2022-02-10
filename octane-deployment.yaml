@@ -123,6 +123,11 @@ spec:
           value: http://octane:8080
         - name: SCHEMA_PASSWORD
           value: P@ssw0rd
+        - name: DB_SERVER_NAME
+          value: octane-mssql
+        - name: ELASTIC_HOST
+          value: octane-es
+
         ports:
         - containerPort: 8080 
         - containerPort: 8443 
