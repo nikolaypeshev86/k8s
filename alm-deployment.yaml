@@ -1,29 +1,29 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql
+  name: mssql
 spec:
   ports:
   - port: 1433
   selector:
-    app: mysql
+    app: mssql
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql 
+  name: mssql 
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mysql
+      app: mssql
   template:
     metadata:
       labels:
-        app: mysql
+        app: mssql
     spec:
       containers:
-      - name: mysql
+      - name: mssql
         image: nikolaypeshev/alm_mssql:1.0
         ports:
         - containerPort: 1433
