@@ -6,7 +6,7 @@ spec:
   ports:
   - port: 1433
   selector:
-    app: octane_mssql
+    app: octane-mssql
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -16,11 +16,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: octane_mssql
+      app: octane-mssql
   template:
     metadata:
       labels:
-        app: octane_mssql
+        app: octane-mssql
     spec:
       containers:
       - name: octane_mssql
@@ -44,7 +44,7 @@ spec:
   ports:
   - port: 9200
   selector:
-    app: octane_es
+    app: octane-es
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -54,11 +54,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: octane_es
+      app: octane-es
   template:
     metadata:
       labels:
-        app: octane_es
+        app: octane-es
     spec:
       containers:
       - name: octane_es
