@@ -27,8 +27,8 @@ spec:
         image: mcr.microsoft.com/mssql/server:2017-latest
         env:
           # Env. for MSSQL
-        - name: MYSQL_ROOT_PASSWORD
-          value: password
+        - name: ACCEPT_EULA
+          value: Y
         - name: SA_PASSWORD
           value: OctaneIsTheBest1!
         - name: MSSQL_PID
