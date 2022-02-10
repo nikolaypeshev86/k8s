@@ -28,7 +28,7 @@ spec:
         env:
           # Env. for MSSQL
         - name: ACCEPT_EULA
-          value: Y
+          value: "Y"
         - name: SA_PASSWORD
           value: OctaneIsTheBest1!
         - name: MSSQL_PID
@@ -88,7 +88,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: octane
+  name: octane-np
 spec:
   type: NodePort
   ports:
