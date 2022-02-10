@@ -101,7 +101,7 @@ kind: Deployment
 metadata:
   name: octane 
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: octane
