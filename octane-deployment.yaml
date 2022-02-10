@@ -23,7 +23,7 @@ spec:
         app: octane-mssql
     spec:
       containers:
-      - name: octane_mssql
+      - name: octane-mssql
         image: mcr.microsoft.com/mssql/server:2017-latest
         env:
           # Env. for MSSQL
@@ -61,7 +61,7 @@ spec:
         app: octane-es
     spec:
       containers:
-      - name: octane_es
+      - name: octane-es
         image: docker.elastic.co/elasticsearch/elasticsearch:7.16.2
         env:
           # Env. for ES
