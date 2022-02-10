@@ -23,7 +23,7 @@ spec:
       labels:
         app: alm
     spec:
-      initContainers:
+      containers:
       - name: mssql
         image: nikolaypeshev/alm_mssql:1.0
         ports:
