@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: uftm-deployment
+  labels:
+    app: uftm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: uftm
+  template:
+    metadata:
+      labels:
+        app: uftm
+    spec:
+      containers:
+      - name: uftmapp
+        image: mobilelifecycle/uft-mobile
+        ports:
+        - containerPort: 8080
+        env:
+        - name: POSTGRES_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: uftm-config
+              key: postgres-host
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: postgres-username 
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: postgres-password
+        - name: POSTGRES_PORT
+          valueFrom:
+           configMapKeyRef:
+              name: uftm-config
+              key: postgres-port
+        - name: FQDN
+          valueFrom:
+            configMapKeyRef:
+              name: uftm-config
+              key: app-fqdn
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: uftm-service
+spec:
+  type: NodePort
+  selector:
+    app: uftm
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 30080
