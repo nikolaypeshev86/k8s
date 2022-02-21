@@ -5,4 +5,4 @@ metadata:
 data:
   postgres-host: postgres-service
   postgres-port: "5432"
-  host: uft-mobile
+  app-fqdn: uft-mobile
