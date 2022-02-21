@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: uftm-config
 data:
-  postgres-host: postgres
+  postgres-host: postgres-service
   postgres-port: "5432"
   host: uft-mobile

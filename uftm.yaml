@@ -15,7 +15,7 @@ spec:
         app: uftm
     spec:
       containers:
-      - name: uftmapp
+      - name: uftm
         image: mobilelifecycle/uft-mobile
         ports:
         - containerPort: 8080
