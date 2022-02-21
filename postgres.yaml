@@ -23,7 +23,7 @@ spec:
         - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: postgres-secret.yaml
+              name: postgres-secret
               key: postgres-password 
 ---
 apiVersion: v1
